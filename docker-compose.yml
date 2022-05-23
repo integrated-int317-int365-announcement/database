@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  database:
+    container_name: annms-database
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data-sys:/var/lib/mysql
+      - ./conf-sys/my.cnf:/etc/my.cnf
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - ./.env
+    ports:
+      - "3306:3306"
+
+  database-admin:
+    image: phpmyadmin/phpmyadmin:5.1.1
+    container_name: annms-database-admin
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+
+networks:
+  default:
+    name: annms-network
