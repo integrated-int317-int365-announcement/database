@@ -1,3 +1,3 @@
 FROM mysql:8
-COPY ./script ./script
+COPY ./sql-script ./script
 EXPOSE 3306:3306
