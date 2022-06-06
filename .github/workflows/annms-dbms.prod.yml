@@ -1,9 +1,9 @@
-name: CICD
+name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [dev]
+    branches: [master]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build_and_push_image:
@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/integrated-int317-int365-announcement/database:dev
+          tags: ghcr.io/integrated-int317-int365-announcement/database:master
