@@ -21,4 +21,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/integrated-int317-int365-announcement/database:master
+          tags: ghcr.io/integrated-int317-int365-announcement/database:0.0.2
