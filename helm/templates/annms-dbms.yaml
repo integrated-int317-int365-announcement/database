@@ -29,7 +29,7 @@ spec:
         - containerPort: 3306
         volumeMounts:
           - name: mysql-init-database
-            mountPath: /script
+            mountPath: /shell
           - name: mysql-init-privileges
             mountPath: /docker-entrypoint-initdb.d
         # lifecycle:
