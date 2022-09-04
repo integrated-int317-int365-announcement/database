@@ -24,6 +24,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/integrated-int317-int365-announcement/database:dev0.0.4
+          tags: ghcr.io/integrated-int317-int365-announcement/database:dev0.0.5
           secrets: |
             "test_secret=${{ secrets.TEST_SECRET }}"
