@@ -47,7 +47,7 @@ kind: ConfigMap
 metadata:
   name: init-scripts
 data:
-  init-scripts.sh: |-
+  init-scripts.sql: |-
     {{ .Values.mysqlServer.user }}
 # ---
 # apiVersion: v1
