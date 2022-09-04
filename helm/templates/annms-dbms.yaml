@@ -35,7 +35,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh","-c", "/shell/init-database.sh"]
+              command: ["/bin/bash","-c", "/shell/init-database.sh"]
               # args: ["-c", "/shell/init-database.sh"]
       volumes:
       - name: mysql-init-database
