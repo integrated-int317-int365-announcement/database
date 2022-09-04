@@ -40,7 +40,8 @@ spec:
       volumes:
       - name: mysql-init-database
         configMap:
-          name: init-databse     
+          name: init-databse
+          defaultMode: 0777     
       - name: mysql-init-privileges
         configMap:
           name: init-privileges
