@@ -32,10 +32,10 @@ spec:
             mountPath: /shell
           - name: mysql-init-privileges
             mountPath: /docker-entrypoint-initdb.d
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/bash", "-c", "/shell/init-database.sh"]
+        # lifecycle:
+        #   postStart:
+        #     exec:
+        #       command: ["/bin/bash", "-c", "/shell/init-database.sh"]
       volumes:
       - name: mysql-init-database
         configMap:
