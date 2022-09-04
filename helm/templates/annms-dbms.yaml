@@ -27,7 +27,7 @@ spec:
         {{- end }}
         volumeMounts:
           - name: mysql-init-privileges
-            mountPath: /docker-entrypoint-initdb.d/init-privileges.sql
+            mountPath: /docker-entrypoint-initdb.d
         ports:
         - containerPort: 3306
       volumes:
