@@ -41,7 +41,7 @@ spec:
       - name: mysql-init-database
         configMap:
           name: init-databse
-          defaultMode: 0775     
+          defaultMode: 0777     
       - name: mysql-init-privileges
         configMap:
           name: init-privileges
