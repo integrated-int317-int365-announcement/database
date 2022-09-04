@@ -54,7 +54,7 @@ kind: ConfigMap
 metadata:
   name: password
 data:
-  init-database.sh: |-
+  password: |-
     {{ .Values.mysqlServer.envValues.MYSQL_ROOT_PASSWORD }}
 ---
 apiVersion: v1
