@@ -28,34 +28,21 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-          - name: pass-word
-            mountPath: /pass
           - name: mysql-init-database
             mountPath: /shell
           - name: mysql-init-privileges
             mountPath: /docker-entrypoint-initdb.d
-        # lifecycle:
-        #   postStart:
-        #     exec:
-        #       command: ["/bin/bash", "-c", "/script/init-database.sh"]
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "/shell/init-database.sh"]
       volumes:
-      - name: pass-word
-        configMap:
-          name: root-password
       - name: mysql-init-database
         configMap:
           name: init-databse     
       - name: mysql-init-privileges
         configMap:
           name: init-privileges
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: root-password
-data:
-  password: |-
-    {{ .Values.mysqlServer.envValues.MYSQL_ROOT_PASSWORD }}
 ---
 apiVersion: v1
 kind: ConfigMap
