@@ -25,8 +25,24 @@ spec:
           value: {{ $value | quote }}
         {{- end }}
         {{- end }}
+        volumeMounts:
+          - name: mysql-init-privileges
+            mountPath: /docker-entrypoint-initdb.d
         ports:
         - containerPort: 3306
+      volumes:
+      - name: mysql-init-privileges
+        configMap:
+          name: init-privileges
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: init-privileges
+data:
+  init-privileges.sql: |-
+    CREATE USER 'first_user'@'%' IDENTIFIED BY '111' ;
+    CREATE USER 'second_user'@'%' IDENTIFIED BY '222' ;
 ---
 apiVersion: v1
 kind: Service
