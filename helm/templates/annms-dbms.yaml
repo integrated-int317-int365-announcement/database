@@ -28,40 +28,35 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-          - name: mysql-init-database
-            mountPath: /shell
-          - name: mysql-init-privileges
+          - name: mysql-init-scripts
             mountPath: /docker-entrypoint-initdb.d
-        # lifecycle:
-        #   postStart:
-        #     exec:
-        command: ["/bin/bash","-c", "/shell/init-database.sh"]
-        # command: ["sh", "-c", "cp -r /script/create-annms-schema_1.3.19.sql /docker-entrypoint-initdb.d"]
-        # args: ["-c", "/shell/init-database.sh"]
+          # - name: mysql-init-privileges
+          #   mountPath: /docker-entrypoint-initdb.d
+        # command: ["/bin/bash","-c", "/shell/init-database.sh"]
       volumes:
-      - name: mysql-init-database
+      - name: mysql-init-scripts
         configMap:
-          name: init-databse
-          defaultMode: 0777     
-      - name: mysql-init-privileges
-        configMap:
-          name: init-privileges
+          name: init-scripts
+          # defaultMode: 0777     
+      # - name: mysql-init-privileges
+      #   configMap:
+      #     name: init-privileges
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: init-databse
+  name: init-scripts
 data:
-  init-database.sh: |-
-    {{ .Values.mysqlServer.database }}
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: init-privileges
-data:
-  init-privileges.sql: |-
-    {{ .Values.mysqlServer.user }}
+  init-scripts.sh: |-
+    {{ .Values.mysqlServer.scripts }}
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: init-privileges
+# data:
+#   init-privileges.sql: |-
+#     {{ .Values.mysqlServer.user }}
 ---
 apiVersion: v1
 kind: Service
