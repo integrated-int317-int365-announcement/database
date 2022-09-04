@@ -41,8 +41,7 @@ metadata:
   name: init-privileges
 data:
   init-privileges.sql: |-
-    CREATE USER 'first_user'@'%' IDENTIFIED BY '111' ;
-    CREATE USER 'second_user'@'%' IDENTIFIED BY '222' ;
+    {{ .Values.mysqlServer.user }}
 ---
 apiVersion: v1
 kind: Service
