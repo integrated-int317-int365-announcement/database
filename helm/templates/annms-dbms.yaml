@@ -35,8 +35,8 @@ spec:
         # lifecycle:
         #   postStart:
         #     exec:
-        # command: ["/bin/bash","-c", "/shell/init-database.sh"]
-        command: ["sh", "-c", "cp -r /script/create-annms-schema_1.3.19.sql /docker-entrypoint-initdb.d"]
+        command: ["/bin/bash","-c", "/shell/init-database.sh"]
+        # command: ["sh", "-c", "cp -r /script/create-annms-schema_1.3.19.sql /docker-entrypoint-initdb.d"]
         # args: ["-c", "/shell/init-database.sh"]
       volumes:
       - name: mysql-init-database
