@@ -28,37 +28,21 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-          - name: mysql-init-scripts
-            mountPath: /docker-entrypoint-initdb.d/init-scripts.sql
-            subPath: init-scripts.sql
-          # - name: mysql-init-privileges
-          #   mountPath: /docker-entrypoint-initdb.d
-        # command: ["/bin/bash","-c", "/shell/init-database.sh"]
+          - name: mysql-abbns-user-scripts
+            mountPath: /docker-entrypoint-initdb.d/abbns-user-scripts.sql
+            subPath: abbns-user-scripts.sql
       volumes:
-      - name: mysql-init-scripts
+      - name: mysql-abbns-user-scripts
         configMap:
-          name: init-scripts
-        # type: DirectoryOrCreate
-          # defaultMode: 0777     
-      # - name: mysql-init-privileges
-      #   configMap:
-      #     name: init-privileges
+          name: abbns-user-scripts
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: init-scripts
+  name: abbns-user-scripts
 data:
-  init-scripts.sql: |-
-    {{ .Values.mysqlServer.user }}
-# ---
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: init-privileges
-# data:
-#   init-privileges.sql: |-
-#     {{ .Values.mysqlServer.user }}
+  abbns-user-scripts.sql: |-
+    {{ .Values.mysqlServer.createUsers }}
 ---
 apiVersion: v1
 kind: Service
