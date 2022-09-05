@@ -30,6 +30,7 @@ spec:
         volumeMounts:
           - name: mysql-init-scripts
             mountPath: /docker-entrypoint-initdb.d/init-scripts.sql
+            subPath: init-scripts.sql
           # - name: mysql-init-privileges
           #   mountPath: /docker-entrypoint-initdb.d
         # command: ["/bin/bash","-c", "/shell/init-database.sh"]
@@ -37,6 +38,7 @@ spec:
       - name: mysql-init-scripts
         configMap:
           name: init-scripts
+        # type: DirectoryOrCreate
           # defaultMode: 0777     
       # - name: mysql-init-privileges
       #   configMap:
