@@ -450,3 +450,6 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+INSERT INTO `admins` VALUES (1,'admin','admin@examplel.com','$argon2id$v=19$t=3,m=4096,p=1$XNdYJpee5TAuGp5F3mDYAQ$X8EtfswowRID7PujduOFAnzqcJlaI48o23oyVHHQ1CQ','admin','admin','admin');
